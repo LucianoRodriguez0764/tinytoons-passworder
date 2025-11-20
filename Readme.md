@@ -189,3 +189,36 @@ Contraseña final:
 **ZHBQ HZGL DLBW GKLL DLHX**
 
 Esta password corresponde a los niveles 1 al 13 sin caminos bifurcaciones.
+
+## Glitches posibles
+
+La contraseña puede contener los caracteres inválidos "A C E F I O S U" en cualquier parte, siempre y cuando los checksums den correctos (o el cuerpo esté adecuado al checksum)
+
+Por ejemplo, si quisiésemos tener en el header **"_I"** (siendo _ cualquier cosa e I la letra invalida) el checksum debería ser **0xF0** y para tener **"I_"** el checksum debería ser **0xFF** ya que sin importar que sea lo segundo, el `0xFF | <byte>` siempre dará **0xFF**.
+
+Para tener en el cuerpo letras inválidas sucede lo mismo, si tenemos algo como **"I_"** habrá que sumar 0xFF para el pie y si tenemos **"_I"** habrá que sumar 0xF0 al pie. Para el header
+debemos de sumar lo que valen las letras con su valor intrínseco.
+
+Para tener **"I_"** en el pie letras inválidas, tenemos que hacer que la suma del cuerpo de **0xFF** (por ejemplo, *QQ DDDD DDDD DDDD DD*) y para **"_I"** nos alcanza con que la suma de **0x0F**
+
+Ejemplos de passwords inválidas que funcionan dentro del juego:
+
+`
+DPSS SSSS SSSS SSSS SSRQ
+`
+
+`
+DPAC EFIO SUAC EFIO SURQ
+`
+
+`
+YREF AOSC FEFI OOQI AQRW
+`
+
+`
+NVQQ DDDD DDDD DDDD DDSS
+`
+
+`
+LUKW WWWW WKJL YMJL BLVZ
+`
